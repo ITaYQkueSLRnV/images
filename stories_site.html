@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>結婚紀念 · 五則故事</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0807;
+    --bg-panel:#120e0c;
+    --bg-raised:#171210;
+    --ink:#d9cfbe;
+    --ink-soft:#a89a86;
+    --ink-faint:#5c5245;
+    --blood:#7c1c2b;
+    --blood-bright:#a12b3a;
+    --brass:#a08a55;
+    --brass-dim:#5f5236;
+    --line:#2b241f;
+    --shadow: 0 30px 80px rgba(0,0,0,0.6);
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ background:var(--bg); }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(124,28,43,0.10), transparent 60%),
+      radial-gradient(ellipse 90% 50% at 90% 110%, rgba(124,28,43,0.06), transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Noto Serif TC', serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:0.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    z-index:1;
+  }
+
+  ::selection{ background:var(--blood); color:#f2e9dc; }
+
+  a{ color:inherit; }
+
+  button{
+    font-family:inherit;
+    background:none;
+    border:none;
+    color:inherit;
+    cursor:pointer;
+  }
+  button:focus-visible, a:focus-visible{
+    outline:1px solid var(--brass);
+    outline-offset:4px;
+  }
+
+  .frame{
+    position:relative;
+    z-index:2;
+    max-width:860px;
+    margin:0 auto;
+    padding:6vw 6vw 10vw;
+  }
+
+  /* ---------- Hero ---------- */
+  #hero{
+    padding-top:4vw;
+    animation: settle 1.1s ease both;
+  }
+  @keyframes settle{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .kicker{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:0.95rem;
+    color:var(--brass);
+    letter-spacing:0.04em;
+    margin:0 0 0.6em;
+  }
+
+  h1.sitetitle{
+    font-weight:900;
+    font-size:clamp(2.6rem, 7vw, 4.6rem);
+    line-height:1.05;
+    margin:0;
+    letter-spacing:0.02em;
+    color:#efe6d6;
+    text-shadow: 0 2px 24px rgba(124,28,43,0.25);
+  }
+
+  .lede{
+    max-width:52ch;
+    font-size:1.05rem;
+    line-height:1.9;
+    color:var(--ink-soft);
+    margin:1.4em 0 0;
+  }
+
+  .flourish{
+    width:100%;
+    height:34px;
+    margin:2.6em 0;
+    display:block;
+    color:var(--brass-dim);
+  }
+
+  /* ---------- Index ---------- */
+  .index{ margin-top:1em; }
+  .index ol{
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .story-item{
+    border-top:1px solid var(--line);
+    position:relative;
+  }
+  .story-item:last-child{ border-bottom:1px solid var(--line); }
+
+  .story-btn{
+    width:100%;
+    text-align:left;
+    display:grid;
+    grid-template-columns:72px 1fr auto;
+    align-items:baseline;
+    gap:1.2em;
+    padding:1.7em 0.2em;
+    transition:background-color 0.35s ease, padding-left 0.35s ease;
+  }
+  .story-btn:hover, .story-btn:focus-visible{
+    background:linear-gradient(90deg, rgba(124,28,43,0.10), transparent 70%);
+    padding-left:0.9em;
+  }
+
+  .numeral{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:1.6rem;
+    color:var(--brass);
+    opacity:0.75;
+  }
+
+  .story-meta{ min-width:0; }
+  .story-title{
+    font-size:1.5rem;
+    font-weight:700;
+    margin:0 0 0.35em;
+    color:#e8ddc9;
+  }
+  .story-teaser{
+    font-size:0.95rem;
+    color:var(--ink-faint);
+    line-height:1.7;
+    margin:0;
+  }
+
+  .story-arrow{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--ink-faint);
+    font-size:1rem;
+    white-space:nowrap;
+    align-self:center;
+  }
+
+  footer.colophon{
+    margin-top:5em;
+    padding-top:1.6em;
+    border-top:1px solid var(--line);
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--ink-faint);
+    font-size:0.9rem;
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- Reader ---------- */
+  #reader{ margin-top:0.5em; }
+  #reader[hidden]{ display:none; }
+
+  .back{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1rem;
+    color:var(--ink-faint);
+    padding:0.4em 0;
+    margin-bottom:2.6em;
+    transition:color 0.25s ease;
+  }
+  .back:hover{ color:var(--brass); }
+
+  .reader-head{ animation: fadein 0.6s ease both; }
+
+  .reader-kicker{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--brass);
+    font-size:0.95rem;
+    margin:0 0 0.5em;
+  }
+
+  h2.story-h{
+    font-size:clamp(2rem, 5vw, 2.8rem);
+    font-weight:900;
+    margin:0 0 0.7em;
+    color:#efe6d6;
+  }
+
+  .epigraph{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    border-left:2px solid var(--blood);
+    padding-left:1em;
+    margin:0 0 2.6em;
+    line-height:1.7;
+  }
+
+  .node-wrap{ animation: fadein 0.55s ease both; }
+
+  @keyframes fadein{
+    from{ opacity:0; transform:translateY(6px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .node-text{
+    font-size:1.18rem;
+    line-height:2.05;
+    color:var(--ink);
+    max-width:60ch;
+    margin:0 0 2.6em;
+  }
+
+  .choices{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    border-top:1px solid var(--line);
+  }
+
+  .choice-btn{
+    width:100%;
+    text-align:left;
+    display:flex;
+    align-items:center;
+    gap:0.9em;
+    padding:1.15em 0.15em;
+    border-bottom:1px solid var(--line);
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    transition:color 0.3s ease, padding-left 0.3s ease;
+  }
+  .choice-btn:hover, .choice-btn:focus-visible{
+    color:#f0e6d5;
+    padding-left:0.6em;
+  }
+  .choice-mark{
+    color:var(--blood-bright);
+    font-size:0.9rem;
+    flex-shrink:0;
+  }
+
+  /* ---------- Ending ---------- */
+  .ending-title{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:1.4rem;
+    color:var(--brass);
+    margin:0 0 0.9em;
+  }
+  .ending-title::before{ content:"終 · "; opacity:0.65; }
+
+  .seal{
+    width:14px; height:14px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--blood-bright), var(--blood) 60%, #3b0f16 100%);
+    margin:2.4em 0 2.2em;
+    box-shadow:0 0 18px rgba(161,43,58,0.35);
+  }
+
+  .ending-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.6em;
+    margin-top:2em;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.05rem;
+  }
+  .ending-actions button{
+    color:var(--ink-soft);
+    padding:0.3em 0;
+    border-bottom:1px solid var(--line);
+    transition:color 0.25s ease, border-color 0.25s ease;
+  }
+  .ending-actions button:hover{
+    color:#f0e6d5;
+    border-color:var(--brass);
+  }
+
+  @media (max-width:560px){
+    .story-btn{ grid-template-columns:44px 1fr; }
+    .story-arrow{ display:none; }
+    .frame{ padding:12vw 7vw 16vw; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+
+  <header id="hero">
+    <p class="kicker">五則手記</p>
+    <h1 class="sitetitle">怪物與白玫瑰</h1>
+    <p class="lede">我將成為您的永夜，而您是我唯一被囚禁的光。</p>
+    <p class="lede">在這最美的牢籠裡，我們將直到永恆，死生不分。</p>
+
+    <svg class="flourish" viewBox="0 0 400 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0 17 H160" stroke="currentColor" stroke-width="1"/>
+      <path d="M240 17 H400" stroke="currentColor" stroke-width="1"/>
+      <circle cx="200" cy="17" r="3" fill="currentColor"/>
+      <path d="M172 17 C182 5, 196 5, 200 17 C204 5, 218 5, 228 17" stroke="currentColor" stroke-width="1"/>
+    </svg>
+  </header>
+
+  <nav class="index" id="index" aria-label="故事目錄">
+    <ol id="storyList"></ol>
+  </nav>
+
+  <footer class="colophon">© 2026</footer>
+
+  <section id="reader" hidden aria-live="polite">
+    <button class="back" id="backBtn">← 返回主頁</button>
+
+    <div class="reader-head">
+      <p class="reader-kicker" id="readerKicker"></p>
+      <h2 class="story-h" id="readerTitle"></h2>
+      <p class="epigraph" id="readerEpigraph"></p>
+    </div>
+
+    <div id="nodeArea"></div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+
+  const stories = [
+    {
+      id:'rose-monster',
+      numeral:'I',
+      title:'童話',
+      teaser:'一朵白玫瑰跌入怪物的深淵，從此再也沒有離開。',
+      epigraph:'♬ Rachmaninoff - Prelude in C-sharp Minor, Op. 3, No. 2',
+      pages:[
+        `從前，有一個活在無盡黑夜與殺戮中的怪物……<br><br>
+        他沒有痛覺，沒有信仰，也沒有愛人的能力。<br>
+        世界對他而言，不過是一個巨大而骯髒的屠宰場。<br>
+        他以為自己會在這片廢墟中腐爛，直到時間的盡頭。`,
+
+        `直到有一天，一朵高貴的白玫瑰，不慎跌落進了他的深淵。<br><br>
+        那朵玫瑰太過純潔，太過美麗，帶著上位者那漫不經心卻又致命的傲慢，輕易地刺穿了怪物所有的防備。<br>
+        怪物本該將他撕碎，或是將他驅逐出自己的領地……但他沒有。`,
+
+        `怪物瘋狂地迷戀上了這朵不屬於他的花。<br><br>
+        他害怕外面的風雨會折斷他的花枝，害怕其他的視線會玷污他的潔白。<br>
+        於是，怪物用自己那雙沾滿鮮血的手，為玫瑰打造了一座最堅固、最華麗、沒有任何出口的牢籠。`,
+
+        `他抽乾了世界的光明，只為了讓玫瑰永遠只能看著他一個人；<br>
+        他切斷了所有的聲音，只為了讓玫瑰只能聽見他的心跳。<br>
+        他用最毒的刺將玫瑰與自己綁在一起，哪怕這會讓玫瑰窒息，哪怕會讓他們雙雙流血，他也絕不放手。`,
+
+        `少爺……您知道那朵玫瑰最後怎麼了嗎？`,
+
+        `玫瑰沒有枯萎，也沒有逃跑。<br><br>
+        他用最溫柔的姿態，在怪物的牢籠裡生根發芽，將自己的根系徹底纏繞在怪物的骨血裡。`,
+
+        `他賜予了怪物永恆的忠誠，<br>
+        也讓怪物心甘情願地，成為了他永遠的囚徒與惡犬。`,
+
+        `<strong>Tu es lux in tenebris meis.</strong><br>
+        <strong>（您是我黑暗中的光。）</strong><br><br>
+        <strong>Mea rosa, in aeternum clausa.</strong><br>
+        <strong>（我的玫瑰，永遠被囚禁。）</strong>`,
+
+        `<div class="ending-title">童話</div>
+        <div class="seal" aria-hidden="true"></div>
+        <img src="https://www.oxxostudio.tw/img/articles/201405/about-me.jpg"  alt="這是圖片" title="oxxo">`
+      ]
+    },
+
+    {
+      id:'star-blackhole',
+      numeral:'II',
+      title:'主序星與黑洞',
+      teaser:'一顆星主動選擇了自己的軌道，墜入只屬於彼此的深淵。',
+      epigraph:'♬ Debussy - Clair de Lune, L. 32',
+      pages:[
+        `在廣袤的宇宙深處，存在著一種極為特殊的天體系統。天文學家將把它們稱之為「共生雙星」……但如果用我的語言來翻譯，那是一場名為「吞噬」的永恆獻祭。<br><br>
+        其中一顆，是極其明亮、美麗、散發著耀眼光芒的主序星；而另一顆，則是已經坍縮到了極致、深不見底，連一點光都無法逃脫的黑暗星體——黑洞。<br><br>
+        那顆美麗的星星，原本可以在宇宙中自由地轉動，將它的光芒灑向無數個星系，被任何人窺探。但是，它卻偏偏被那個黑暗的漩渦給捕捉了。`,
+
+        `起初，只是微弱的引力牽扯。但漸漸地，這份無形的網收得越來越緊。黑洞強大的重力場開始撕裂那顆星星的邊界，將它的光芒、它的物質、它所擁有的一切，一點一滴地剝離下來，拉向自己的深淵。<br><br>
+        那是一個無法逆轉的過程。隨著引力的加劇，那顆星星的軌道越來越小，它只能不斷地、不斷地向著黑暗的核心旋轉、墜落。`,
+
+        `對於外界的觀測者來說，這是一場毀滅。<br><br>
+        他們會看到那顆星星的光芒逐漸黯淡，最終在越過「事件視界」——那條被稱為絕對不歸路的邊界時，徹底從這個宇宙中消失，連一絲殘影都不曾留下。`,
+
+        `但是……少爺，您知道嗎？<br><br>
+        那不是毀滅，那是宇宙中最完美、最無私的「保存」。`,
+
+        `在黑洞的內部，時間是永遠靜止的。那顆星星沒有死亡，它只是完完全全地、毫無保留地，進入了那個只屬於它的黑暗牢籠。從此以後，宇宙中再也沒有任何力量能夠傷害它，沒有時間能夠讓它衰老，也沒有任何其他星體能夠分享它的光芒。它永遠地停留在了被吞噬的那一瞬間，與那片無盡的黑暗融為一體，成為了黑暗骨髓裡最深的一部分。<br><br>
+        這就是它們的結局——不分彼此，沒有分離，永生永世地擁抱在只有彼此的靜默之中。`,
+
+        `如果您是一顆星……<br>
+        我會用盡這世上最溫柔的殘忍，將您一點一點拉入我的深淵。<br><br>
+        我會蒙住您的眼睛，折斷您的羽翼，讓您在這片只有我能觸及的黑暗裡……獲得絕對的、真正意義上的永生。<br><br>
+        沒有任何人能看見您的光芒，除了我。`,
+
+        `<em>如果這就是黑洞的引力……<br>
+        那我早就已經越過「事件視界」了，慕殊。</em>`,
+
+        `<em>你以為是你在捕獲我嗎？<br>
+        是我自己選了這條軌道。是我捨棄了剩下的整個宇宙，主動撞進你的深淵裡的。所以……<br><br>
+        你最好永遠保持這種足以將我撕碎的引力。如果你敢停止吞噬我，如果你敢有一絲一毫的鬆懈，讓我看見了外面世界的光……我絕對不會原諒你。</em>`,
+
+        `<div class="ending-title">主序星與黑洞</div>
+        <div class="seal" aria-hidden="true"></div>
+        <img src="https://www.oxxostudio.tw/img/articles/201405/about-me.jpg"  alt="這是圖片" title="oxxo">`
+      ]
+    },
+
+    {
+      id:'rain',
+      numeral:'III',
+      title:'雨滴',
+      teaser:'原本討厭雨的人，終於找到了一個可以光明正大靠近他的理由。',
+      epigraph:'♬ Chopin - Prelude, Op. 28, No. 15',
+      pages:[
+        `<em>以前我不喜歡雨，雨聲總讓我心煩……但你來到宅邸之後就不一樣了。</em><br><br>
+        <em>因為我有了藉口——天太黑、雨聲太大，甚至是害怕雷聲……我能光明正大地跑去找你。</em><br><br>
+        <em>那時……你心裡是怎麼想我的？</em>`,
+
+        `您……真是個殘忍又傲慢的騙子，我的少爺。<br><br>
+        那時的我，心裡是怎麼想的……<br><br>
+        您知道嗎？其實在您敲門的前幾秒，我就已經聽見了您的腳步聲。<br><br>
+        我是個即使在睡夢中，只要聽見十公尺外有異常風聲就會立刻拔槍的人。但我卻花了很長、很長的一段時間，去記住您赤腳踩在地毯上的聲音，記住您呼吸的頻率，記住您衣擺摩擦的細微聲響。`,
+
+        `當我打開門，看到您穿著寬鬆的睡衣，揉著眼睛站在那裡，渾身散發著剛從被窩裡帶出來的暖意時……您以為我看到的是一個害怕打雷的脆弱少爺嗎？<br><br>
+        不，少爺。在我的眼裡，世界上沒有無辜的羔羊，只有待宰的獵物與沒有價值的垃圾。但您不一樣。您站在那裡，帶著那種乾淨得連靈魂都在發光的脆弱，對我撒著那些連三歲小孩都騙不過的謊言。`,
+
+        `那時，我每天看著您那些拙劣的演技，聽著您那些關於「害怕黑暗」、「討厭雷聲」的藉口……我心裡的每一個細胞、每一滴骯髒的血液都在瘋狂地叫囂著。<br><br>
+        我在想……這個被所有人捧在手心裡的高貴繼承人，怎麼會這麼愚蠢，居然會主動走進一個雙手沾滿鮮血的殺人犯的房間？我在想……如果我現在就把門反鎖，把您按在那張寫滿了西班牙文的書桌上，用領帶綁住您這雙漂亮的手腕，您那雙總是高高在上、帶著冷意的冷灰色眼睛裡，會不會終於流露出恐懼與崩潰的眼淚？`,
+
+        `我每一刻都在忍耐，少爺。我像一隻患了狂犬病的野狗，拼命地咬緊牙關，逼著自己戴好那副名為「禮貌」與「忠誠」的虛偽面具。我安靜地伺候您躺下，為您掖好被角，用最溫和、最不具威脅性的語氣對您說話。因為我太害怕了……我害怕我只要稍微露出一點點我心底那些齷齪、暴戾、想要將您徹底拆吃入腹的佔有慾，您就會像一隻受驚的白鳥一樣，永遠飛出我的視線。`,
+
+        `但現在，您卻親口告訴我，您從一開始就知道那是藉口。您不僅不怕我，反而還在……縱容我，引誘我。<br><br>
+        您知道這對一個瘋子來說意味著什麼嗎？這意味著……哪怕是當年那個還沒被完全馴化的我，在您面前，也不過是一隻自以為是、卻早被您乖乖套上項圈的惡犬。`,
+
+        `<strong>Dormi secure, mi care domine...（安穩地睡吧，我親愛的主人。）</strong><br><br>
+        當年我以為，那是一場我擅自生出的、明知終會醒來卻甘願沉淪的幻夢。但現在我才明白……原來將我拉入這場無盡深淵、並親手關上牢籠大門的人，從一開始，就是您自己。`,
+
+        `<div class="ending-title">雨滴</div>
+        <div class="seal" aria-hidden="true"></div>
+        <img src="https://www.oxxostudio.tw/img/articles/201405/about-me.jpg"  alt="這是圖片" title="oxxo">`
+      ]
+    },
+
+    {
+      id:'vanitas',
+      numeral:'IV',
+      title:'永不腐朽的玫瑰',
+      teaser:'一幅虛空派靜物畫裡，唯一被永遠凝固的白玫瑰。',
+      epigraph:'♬ Ravel - Pavane pour une infante défunte, M. 19',
+      pages:[
+        `這是一幅十七世紀初期的荷蘭靜物畫，當時被稱為「Vanitas」（虛空派），主題通常與生命的短暫與死亡的必然有關。<br><br>
+        畫面的周圍，這些色彩極盡艷麗的鬱金香、牡丹與鳶尾花，您仔細看……它們的邊緣已經出現了細微的枯黃與皺縮，有些花瓣甚至已經在掉落的半空中定格。玻璃瓶旁邊，畫家還畫了象徵時間流逝的懷錶，以及幾隻正在啃噬葉片的隱秘昆蟲。`,
+
+        `但在所有這些象徵著腐朽、死亡與無可挽回的衰敗之中，畫家卻在畫面的絕對正中心，安排了一朵沒有受任何侵蝕的純白玫瑰。它盛開到了極致，沒有一絲一毫的瑕疵，每一片花瓣都散發著近乎冰冷的微光，彷彿它根本不屬於這個注定要腐爛的空間，而是被某種看不見的、極度強大的力量強行凝固在了最完美的瞬間。`,
+
+        `這幅畫的上一任主人，是一個可悲的傢伙。他將這幅畫鎖在保險箱裡，認為畫家是在表達對絕對純潔的嚮往。但我看見這幅畫的第一眼，我就知道他在撒謊。<br><br>
+        這幅畫真正的名字，根本不叫什麼《生命之花》。畫家將所有的死亡與枯萎畫在四周，只是為了襯托那唯一一朵白玫瑰的永恆。他是在剝奪那朵玫瑰感受四季與生長的權利，將它強制性地封存、囚禁在那片黑暗裡，讓它只能永遠維持在他最想要的那個姿態。`,
+
+        `就像我對您一樣，我的伊恩。我不接受任何形式的改變與失去，我不要畫布上的虛幻，我要的是將您這個活生生的人，永遠囚固在我為您打造的真空裡，直到世界的盡頭。<br><br>
+        <strong>In hoc sepulcro pulchritudinis, tu es mea rosa incorrupta.</strong><br>
+        <strong>（在這美麗的陵寢中，您是我永不腐朽的玫瑰。）</strong>`,
+
+        `<div class="ending-title">永不腐朽的玫瑰</div>
+        <div class="seal" aria-hidden="true"></div>
+        <img src="https://www.oxxostudio.tw/img/articles/201405/about-me.jpg"  alt="這是圖片" title="oxxo">`
+      ]
+    },
+
+    {
+      id:'ring',
+      numeral:'V',
+      title:'白刺玫瑰之戒',
+      teaser:'沒有賓客、沒有神明，只有兩人在白玫瑰花房裡許下永恆。',
+      epigraph:'♬ Chopin - Nocturne in E-flat Major, Op. 9, No. 2',
+      pages:[
+        `伊恩……等我們回到莊園，我就會為您戴上戒指。<br><br>
+        我查過很多資料。我會為您尋找這世上最堅硬、最璀璨、沒有任何雜質的鑽石。<br><br>
+        戒台會用最純粹的鉑金打造，在內圈，我會刻上我們兩個人的名字。伊恩·卡特……與慕殊。`,
+
+        `婚禮……不需要其他人。<br><br>
+        這世上沒有任何神明有資格見證我們的結合。我也不想讓任何一雙骯髒的眼睛，看到您穿著禮服的樣子。這場婚禮，只會有我們兩個人。在我們的溫室花房裡，在那些白玫瑰的見證下……我會讓您徹徹底底、生生世世，都只冠以我的印記。<br><br>
+        好嗎？我的少爺。`,
+
+        `<strong>Dormi, mea spina alba.</strong><br>
+        <strong>（睡吧，我的白刺玫瑰。）</strong>`,
+
+        `<div class="ending-title">白刺玫瑰之戒</div>
+        <div class="seal" aria-hidden="true"></div>
+        <img src="https://www.oxxostudio.tw/img/articles/201405/about-me.jpg"  alt="這是圖片" title="oxxo">`
+      ]
+    }
+  ];
+
+  const indexEl = document.getElementById('index');
+  const listEl = document.getElementById('storyList');
+  const readerEl = document.getElementById('reader');
+  const nodeArea = document.getElementById('nodeArea');
+  const backBtn = document.getElementById('backBtn');
+  const readerKicker = document.getElementById('readerKicker');
+  const readerTitle = document.getElementById('readerTitle');
+  const readerEpigraph = document.getElementById('readerEpigraph');
+  let currentStory = null;
+  let currentPage = 0;
+
+  function renderIndex(){
+    listEl.innerHTML = stories.map(s => `
+      <li class="story-item">
+        <button class="story-btn" data-id="${s.id}">
+          <span class="numeral">${s.numeral}</span>
+          <span class="story-meta">
+            <span class="story-title">${s.title}</span>
+            <span class="story-teaser">${s.teaser}</span>
+          </span>
+          <span class="story-arrow">閱讀故事 →</span>
+        </button>
+      </li>
+    `).join('');
+
+    listEl.querySelectorAll('.story-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=> openStory(btn.dataset.id));
+    });
+  }
+
+  function openStory(id){
+    const story = stories.find(s=>s.id===id);
+    if(!story) return;
+
+    currentStory = story;
+    currentPage = 0;
+
+    indexEl.hidden = true;
+    document.getElementById('hero').style.display = 'none';
+    document.querySelector('footer.colophon').style.display = 'none';
+    readerEl.hidden = false;
+
+    readerKicker.textContent = '卷' + story.numeral + ' · ' + story.title;
+    readerTitle.textContent = story.title;
+    readerEpigraph.textContent = '' + story.epigraph + '';
+
+    renderPage();
+    window.scrollTo({top:0, behavior:'auto'});
+  }
+
+  function renderPage(){
+    const story = currentStory;
+    if(!story) return;
+
+    const page = story.pages[currentPage];
+    const lastPage = currentPage === story.pages.length - 1;
+
+    nodeArea.innerHTML = `
+      <div class="node-wrap">
+        <div class="node-text">${page}</div>
+
+        <div class="page-nav">
+          <button class="page-btn" id="prevPage" ${currentPage === 0 ? 'disabled' : ''}>← 上一頁</button>
+          <span class="page-counter">${currentPage + 1} / ${story.pages.length}</span>
+          ${
+            lastPage
+              ? '<button class="page-btn" id="finishStory">返回目錄</button>'
+              : '<button class="page-btn" id="nextPage">下一頁 →</button>'
+          }
+        </div>
+      </div>
+    `;
+
+    const prev = document.getElementById('prevPage');
+    const next = document.getElementById('nextPage');
+    const finish = document.getElementById('finishStory');
+
+    if(prev) prev.addEventListener('click', ()=>{
+      if(currentPage > 0){
+        currentPage--;
+        renderPage();
+        window.scrollTo({top:0, behavior:'auto'});
+      }
+    });
+
+    if(next) next.addEventListener('click', ()=>{
+      if(currentPage < story.pages.length - 1){
+        currentPage++;
+        renderPage();
+        window.scrollTo({top:0, behavior:'auto'});
+      }
+    });
+
+    if(finish) finish.addEventListener('click', closeStory);
+  }
+
+  function closeStory(){
+    readerEl.hidden = true;
+    indexEl.hidden = false;
+    document.getElementById('hero').style.display = '';
+    document.querySelector('footer.colophon').style.display = '';
+    currentStory = null;
+    currentPage = 0;
+    window.scrollTo({top:0, behavior:'auto'});
+  }
+
+  backBtn.addEventListener('click', closeStory);
+
+  renderIndex();
+
+})();
+</script>
+
+</body>
+</html>

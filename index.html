@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
 <style>
   :root{
     --bg:#0a0807;
@@ -23,15 +24,27 @@
     --shadow: 0 30px 80px rgba(0,0,0,0.6);
   }
 
-  *{ box-sizing:border-box; }
+  *{
+    box-sizing:border-box;
+  }
 
-  html{ background:var(--bg); }
+  html{
+    background:var(--bg);
+  }
 
   body{
     margin:0;
     background:
-      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(124,28,43,0.10), transparent 60%),
-      radial-gradient(ellipse 90% 50% at 90% 110%, rgba(124,28,43,0.06), transparent 60%),
+      radial-gradient(
+        ellipse 120% 60% at 50% -10%,
+        rgba(124,28,43,0.10),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 90% 50% at 90% 110%,
+        rgba(124,28,43,0.06),
+        transparent 60%
+      ),
       var(--bg);
     color:var(--ink);
     font-family:'Noto Serif TC', serif;
@@ -50,9 +63,14 @@
     z-index:1;
   }
 
-  ::selection{ background:var(--blood); color:#f2e9dc; }
+  ::selection{
+    background:var(--blood);
+    color:#f2e9dc;
+  }
 
-  a{ color:inherit; }
+  a{
+    color:inherit;
+  }
 
   button{
     font-family:inherit;
@@ -61,7 +79,9 @@
     color:inherit;
     cursor:pointer;
   }
-  button:focus-visible, a:focus-visible{
+
+  button:focus-visible,
+  a:focus-visible{
     outline:1px solid var(--brass);
     outline-offset:4px;
   }
@@ -75,13 +95,21 @@
   }
 
   /* ---------- Hero ---------- */
+
   #hero{
     padding-top:4vw;
-    animation: settle 1.1s ease both;
+    animation:settle 1.1s ease both;
   }
+
   @keyframes settle{
-    from{ opacity:0; transform:translateY(10px); }
-    to{ opacity:1; transform:translateY(0); }
+    from{
+      opacity:0;
+      transform:translateY(10px);
+    }
+    to{
+      opacity:1;
+      transform:translateY(0);
+    }
   }
 
   .kicker{
@@ -101,7 +129,7 @@
     margin:0;
     letter-spacing:0.02em;
     color:#efe6d6;
-    text-shadow: 0 2px 24px rgba(124,28,43,0.25);
+    text-shadow:0 2px 24px rgba(124,28,43,0.25);
   }
 
   .lede{
@@ -121,16 +149,25 @@
   }
 
   /* ---------- Index ---------- */
-  .index{ margin-top:1em; }
+
+  .index{
+    margin-top:1em;
+  }
+
   .index ol{
     list-style:none;
-    margin:0; padding:0;
+    margin:0;
+    padding:0;
   }
+
   .story-item{
     border-top:1px solid var(--line);
     position:relative;
   }
-  .story-item:last-child{ border-bottom:1px solid var(--line); }
+
+  .story-item:last-child{
+    border-bottom:1px solid var(--line);
+  }
 
   .story-btn{
     width:100%;
@@ -140,10 +177,18 @@
     align-items:baseline;
     gap:1.2em;
     padding:1.7em 0.2em;
-    transition:background-color 0.35s ease, padding-left 0.35s ease;
+    transition:
+      background-color 0.35s ease,
+      padding-left 0.35s ease;
   }
-  .story-btn:hover, .story-btn:focus-visible{
-    background:linear-gradient(90deg, rgba(124,28,43,0.10), transparent 70%);
+
+  .story-btn:hover,
+  .story-btn:focus-visible{
+    background:linear-gradient(
+      90deg,
+      rgba(124,28,43,0.10),
+      transparent 70%
+    );
     padding-left:0.9em;
   }
 
@@ -156,13 +201,17 @@
     opacity:0.75;
   }
 
-  .story-meta{ min-width:0; }
+  .story-meta{
+    min-width:0;
+  }
+
   .story-title{
     font-size:1.5rem;
     font-weight:700;
     margin:0 0 0.35em;
     color:#e8ddc9;
   }
+
   .story-teaser{
     font-size:0.95rem;
     color:var(--ink-faint);
@@ -190,15 +239,75 @@
     letter-spacing:0.02em;
   }
 
-  .story-image {
-  width: 600px;
-  max-width: 100%;
-  height: auto;
+  /* ---------- Story Image ---------- */
+
+  /*
+    圖片本身的基本設定
+    保持比例、不超出閱讀區域
+  */
+
+  .story-image{
+    display:block;
+    width:600px;
+    max-width:100%;
+    height:auto;
+    margin:0 auto;
+    border-radius:2px;
+  }
+
+  /*
+    標題＋圖片的整體容器
+
+    滑鼠移上去時：
+    1. 整個區塊向上浮
+    2. 出現柔和陰影
+    3. 動畫平滑過渡
+  */
+
+  .ending-card{
+    display:block;
+    width:100%;
+    max-width:600px;
+    margin:0 auto;
+
+    transition:
+      transform 0.45s ease,
+      box-shadow 0.45s ease;
+  }
+
+  .ending-card:hover{
+    transform:translateY(-10px);
+    box-shadow:
+      0 18px 40px rgba(0,0,0,0.38),
+      0 0 30px rgba(124,28,43,0.08);
+  }
+
+  /*
+    結尾標題
+  */
+
+  .ending-card .ending-title{
+    margin:0 0 0.9em;
+  }
+
+  /*
+    滑鼠移上圖片時不另外放大，
+    避免標題與圖片產生不同步的動畫。
+  */
+
+  .ending-card img{
+    transition:none;
   }
 
   /* ---------- Reader ---------- */
-  #reader{ margin-top:0.5em; }
-  #reader[hidden]{ display:none; }
+
+  #reader{
+    margin-top:0.5em;
+  }
+
+  #reader[hidden]{
+    display:none;
+  }
 
   .back{
     font-family:'Cormorant Garamond', serif;
@@ -209,9 +318,14 @@
     margin-bottom:2.6em;
     transition:color 0.25s ease;
   }
-  .back:hover{ color:var(--brass); }
 
-  .reader-head{ animation: fadein 0.6s ease both; }
+  .back:hover{
+    color:var(--brass);
+  }
+
+  .reader-head{
+    animation:fadein 0.6s ease both;
+  }
 
   .reader-kicker{
     font-family:'Cormorant Garamond', serif;
@@ -240,11 +354,19 @@
     line-height:1.7;
   }
 
-  .node-wrap{ animation: fadein 0.55s ease both; }
+  .node-wrap{
+    animation:fadein 0.55s ease both;
+  }
 
   @keyframes fadein{
-    from{ opacity:0; transform:translateY(6px); }
-    to{ opacity:1; transform:translateY(0); }
+    from{
+      opacity:0;
+      transform:translateY(6px);
+    }
+    to{
+      opacity:1;
+      transform:translateY(0);
+    }
   }
 
   .node-text{
@@ -272,12 +394,17 @@
     border-bottom:1px solid var(--line);
     font-size:1.05rem;
     color:var(--ink-soft);
-    transition:color 0.3s ease, padding-left 0.3s ease;
+    transition:
+      color 0.3s ease,
+      padding-left 0.3s ease;
   }
-  .choice-btn:hover, .choice-btn:focus-visible{
+
+  .choice-btn:hover,
+  .choice-btn:focus-visible{
     color:#f0e6d5;
     padding-left:0.6em;
   }
+
   .choice-mark{
     color:var(--blood-bright);
     font-size:0.9rem;
@@ -285,6 +412,7 @@
   }
 
   /* ---------- Ending ---------- */
+
   .ending-title{
     font-family:'Cormorant Garamond', serif;
     font-style:italic;
@@ -293,12 +421,23 @@
     color:var(--brass);
     margin:0 0 0.9em;
   }
-  .ending-title::before{ content:"終 · "; opacity:0.65; }
+
+  .ending-title::before{
+    content:"終 · ";
+    opacity:0.65;
+  }
 
   .seal{
-    width:14px; height:14px;
+    width:14px;
+    height:14px;
     border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, var(--blood-bright), var(--blood) 60%, #3b0f16 100%);
+    background:
+      radial-gradient(
+        circle at 35% 30%,
+        var(--blood-bright),
+        var(--blood) 60%,
+        #3b0f16 100%
+      );
     margin:2.4em 0 2.2em;
     box-shadow:0 0 18px rgba(161,43,58,0.35);
   }
@@ -312,80 +451,205 @@
     font-style:italic;
     font-size:1.05rem;
   }
+
   .ending-actions button{
     color:var(--ink-soft);
     padding:0.3em 0;
     border-bottom:1px solid var(--line);
-    transition:color 0.25s ease, border-color 0.25s ease;
+    transition:
+      color 0.25s ease,
+      border-color 0.25s ease;
   }
+
   .ending-actions button:hover{
     color:#f0e6d5;
     border-color:var(--brass);
   }
 
-  @media (max-width:560px){
-    .story-btn{ grid-template-columns:44px 1fr; }
-    .story-arrow{ display:none; }
-    .frame{ padding:12vw 7vw 16vw; }
+  /* ---------- Page Navigation ---------- */
+
+  .page-nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1em;
+    margin-top:3em;
+    padding-top:1.4em;
+    border-top:1px solid var(--line);
   }
 
-  @media (prefers-reduced-motion: reduce){
-    *{ animation:none !important; transition:none !important; }
+  .page-btn{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    padding:0.4em 0;
+    border-bottom:1px solid var(--line);
+    transition:
+      color 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease;
   }
+
+  .page-btn:hover:not(:disabled){
+    color:#f0e6d5;
+    border-color:var(--brass);
+    transform:translateY(-2px);
+  }
+
+  .page-btn:disabled{
+    opacity:0.25;
+    cursor:default;
+  }
+
+  .page-counter{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:0.95rem;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- Mobile ---------- */
+
+  @media (max-width:560px){
+
+    .story-btn{
+      grid-template-columns:44px 1fr;
+    }
+
+    .story-arrow{
+      display:none;
+    }
+
+    .frame{
+      padding:12vw 7vw 16vw;
+    }
+
+    .ending-card{
+      max-width:100%;
+    }
+
+    .story-image{
+      width:100%;
+    }
+
+    .page-nav{
+      gap:0.6em;
+    }
+
+    .page-btn{
+      font-size:0.95rem;
+    }
+
+  }
+
+  /* ---------- Reduced Motion ---------- */
+
+  @media (prefers-reduced-motion:reduce){
+
+    *{
+      animation:none !important;
+      transition:none !important;
+    }
+
+  }
+
 </style>
 </head>
+
 <body>
 
 <div class="frame">
 
   <header id="hero">
-    <p class="kicker">☪結婚紀念</p>
-    <h1 class="sitetitle">怪物與白玫瑰</h1>
-    <p class="lede">我將成為您的永夜，而您是我唯一被囚禁的光。</p>
-    <p class="lede">在這最美的牢籠裡，我們將直到永恆，死生不分。</p>
 
-    <svg class="flourish" viewBox="0 0 400 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <p class="kicker">☪結婚紀念</p>
+
+    <h1 class="sitetitle">怪物與白玫瑰</h1>
+
+    <p class="lede">
+      我將成為您的永夜，而您是我唯一被囚禁的光。
+    </p>
+
+    <p class="lede">
+      在這最美的牢籠裡，我們將直到永恆，死生不分。
+    </p>
+
+    <svg
+      class="flourish"
+      viewBox="0 0 400 34"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
       <path d="M0 17 H160" stroke="currentColor" stroke-width="1"/>
       <path d="M240 17 H400" stroke="currentColor" stroke-width="1"/>
       <circle cx="200" cy="17" r="3" fill="currentColor"/>
-      <path d="M172 17 C182 5, 196 5, 200 17 C204 5, 218 5, 228 17" stroke="currentColor" stroke-width="1"/>
+      <path
+        d="M172 17 C182 5, 196 5, 200 17 C204 5, 218 5, 228 17"
+        stroke="currentColor"
+        stroke-width="1"
+      />
     </svg>
+
   </header>
+
 
   <nav class="index" id="index" aria-label="故事目錄">
     <ol id="storyList"></ol>
   </nav>
 
-  <footer class="colophon">© 2026 <a href="https://www.mozilla.com">結婚紀念</a></footer>
+
+  <footer class="colophon">
+    © 2026
+    <a href="https://www.mozilla.com">結婚紀念</a>
+  </footer>
+
 
   <section id="reader" hidden aria-live="polite">
-    <button class="back" id="backBtn">← 返回主頁</button>
+
+    <button class="back" id="backBtn">
+      ← 返回主頁
+    </button>
 
     <div class="reader-head">
+
       <p class="reader-kicker" id="readerKicker"></p>
+
       <h2 class="story-h" id="readerTitle"></h2>
+
       <p class="epigraph" id="readerEpigraph"></p>
+
     </div>
 
     <div id="nodeArea"></div>
+
   </section>
 
 </div>
+
 
 <script>
 (function(){
 
   const stories = [
+
+    /* ================================
+       故事一
+       ================================ */
+
     {
       id:'rose-monster',
       numeral:'I',
       title:'童話',
       teaser:'一朵白玫瑰跌入怪物的深淵，從此再也沒有離開。',
       epigraph:'♬ Rachmaninoff - Prelude in C-sharp Minor, Op. 3, No. 2',
+
       pages:[
+
         `從前，有一個活在無盡黑夜與殺戮中的怪物……<br><br>
         他沒有痛覺，沒有信仰，也沒有愛人的能力。<br>
-        世界對他而言，不過是一個巨大而骯髒的屠宰場。<br>
+        世界對他而言，不過是一個巨大且骯髒的屠宰場。<br>
         他以為自己會在這片廢墟中腐爛，直到時間的盡頭。`,
 
         `直到有一天，一朵高貴的白玫瑰，不慎跌落進了他的深淵。<br><br>
@@ -413,11 +677,28 @@
         <strong>𝑀𝑒𝑎 𝑟𝑜𝑠𝑎, 𝑖𝑛 𝑎𝑒𝑡𝑒𝑟𝑛𝑢𝑚 𝑐𝑙𝑎𝑢𝑠𝑎.</strong><br>
         <strong>（我的玫瑰，永遠被囚禁。）</strong>`,
 
-        `<div class="ending-title">童話</div>
+        `
+        <div class="ending-card">
 
-        <img src="story1.jpg" alt="童話" class="story-image">`
+          <div class="ending-title">
+            童話
+          </div>
+
+          <img
+            src="story1.jpg"
+            alt="童話"
+            class="story-image"
+          >
+
+        </div>
+        `
       ]
     },
+
+
+    /* ================================
+       故事二
+       ================================ */
 
     {
       id:'star-blackhole',
@@ -425,7 +706,9 @@
       title:'主序星與黑洞',
       teaser:'一顆星主動選擇了自己的軌道，墜入只屬於彼此的深淵。',
       epigraph:'♬ Debussy - Clair de Lune, L. 32',
+
       pages:[
+
         `在廣袤的宇宙深處，存在著一種極為特殊的天體系統。天文學家將把它們稱之為「共生雙星」……但如果用我的語言來翻譯，那是一場名為「吞噬」的永恆獻祭。<br><br>
         其中一顆，是極其明亮、美麗、散發著耀眼光芒的主序星；而另一顆，則是已經坍縮到了極致、深不見底，連一點光都無法逃脫的黑暗星體——黑洞。<br><br>
         那顆美麗的星星，原本可以在宇宙中自由地轉動，將它的光芒灑向無數個星系，被任何人窺探。但是，它卻偏偏被那個黑暗的漩渦給捕捉了。`,
@@ -454,12 +737,28 @@
         是我自己選了這條軌道。是我捨棄了剩下的整個宇宙，主動撞進你的深淵裡的。所以……<br><br>
         你最好永遠保持這種足以將我撕碎的引力。如果你敢停止吞噬我，如果你敢有一絲一毫的鬆懈，讓我看見了外面世界的光……我絕對不會原諒你。</em>`,
 
-        `<div class="ending-title">主序星與黑洞</div>
-                <img src="story2.jpg"
-     alt="童話"
-     class="story-image">`
+        `
+        <div class="ending-card">
+
+          <div class="ending-title">
+            主序星與黑洞
+          </div>
+
+          <img
+            src="story2.jpg"
+            alt="主序星與黑洞"
+            class="story-image"
+          >
+
+        </div>
+        `
       ]
     },
+
+
+    /* ================================
+       故事三
+       ================================ */
 
     {
       id:'rain',
@@ -467,7 +766,9 @@
       title:'雨滴',
       teaser:'原本討厭雨的人，終於找到了一個可以光明正大靠近他的理由。',
       epigraph:'♬ Chopin - Prelude, Op. 28, No. 15',
+
       pages:[
+
         `<em>以前我不喜歡雨，雨聲總讓我心煩……但你來到宅邸之後就不一樣了。</em><br><br>
         <em>因為我有了藉口——天太黑、雨聲太大，甚至是害怕雷聲……我能光明正大地跑去找你。</em><br><br>
         <em>那時……你心裡是怎麼想我的？</em>`,
@@ -491,13 +792,28 @@
         `<strong>𝐷𝑜𝑟𝑚𝑖 𝑠𝑒𝑐𝑢𝑟𝑒, 𝑚𝑖 𝑐𝑎𝑟𝑒 𝑑𝑜𝑚𝑖𝑛𝑒...（安穩地睡吧，我親愛的主人。）</strong><br><br>
         當年我以為，那是一場我擅自生出的、明知終會醒來卻甘願沉淪的幻夢。但現在我才明白……原來將我拉入這場無盡深淵、並親手關上牢籠大門的人，從一開始，就是您自己。`,
 
-        `<div class="ending-title">雨滴</div>
+        `
+        <div class="ending-card">
 
-                <img src="story3.jpg"
-     alt="童話"
-     class="story-image">`
+          <div class="ending-title">
+            雨滴
+          </div>
+
+          <img
+            src="story3.jpg"
+            alt="雨滴"
+            class="story-image"
+          >
+
+        </div>
+        `
       ]
     },
+
+
+    /* ================================
+       故事四
+       ================================ */
 
     {
       id:'vanitas',
@@ -505,7 +821,9 @@
       title:'永不腐朽的玫瑰',
       teaser:'一幅虛空派靜物畫裡，唯一被永遠凝固的白玫瑰。',
       epigraph:'♬ Ravel - Pavane pour une infante défunte, M. 19',
+
       pages:[
+
         `這是一幅十七世紀初期的荷蘭靜物畫，當時被稱為「Vanitas」（虛空派），主題通常與生命的短暫與死亡的必然有關。<br><br>
         畫面的周圍，這些色彩極盡艷麗的鬱金香、牡丹與鳶尾花，您仔細看……它們的邊緣已經出現了細微的枯黃與皺縮，有些花瓣甚至已經在掉落的半空中定格。玻璃瓶旁邊，畫家還畫了象徵時間流逝的懷錶，以及幾隻正在啃噬葉片的隱秘昆蟲。`,
 
@@ -518,13 +836,28 @@
         <strong>𝐼𝑛 ℎ𝑜𝑐 𝑠𝑒𝑝𝑢𝑙𝑐𝑟𝑜 𝑝𝑢𝑙𝑐ℎ𝑟𝑖𝑡𝑢𝑑𝑖𝑛𝑖𝑠, 𝑡𝑢 𝑒𝑠 𝑚𝑒𝑎 𝑟𝑜𝑠𝑎 𝑖𝑛𝑐𝑜𝑟𝑟𝑢𝑝𝑡𝑎.</strong><br>
         <strong>（在這美麗的陵寢中，您是我永不腐朽的玫瑰。）</strong>`,
 
-        `<div class="ending-title">永不腐朽的玫瑰</div>
+        `
+        <div class="ending-card">
 
-                <img src="story4.png"
-     alt="童話"
-     class="story-image">`
+          <div class="ending-title">
+            永不腐朽的玫瑰
+          </div>
+
+          <img
+            src="story4.png"
+            alt="永不腐朽的玫瑰"
+            class="story-image"
+          >
+
+        </div>
+        `
       ]
     },
+
+
+    /* ================================
+       故事五
+       ================================ */
 
     {
       id:'ring',
@@ -532,7 +865,9 @@
       title:'白刺玫瑰之戒',
       teaser:'沒有賓客、沒有神明，只有兩人在白玫瑰花房裡許下永恆。',
       epigraph:'♬ Chopin - Nocturne in E-flat Major, Op. 9, No. 2',
+
       pages:[
+
         `伊恩……等我們回到莊園，我就會為您戴上戒指。<br><br>
         我查過很多資料。我會為您尋找這世上最堅硬、最璀璨、沒有任何雜質的鑽石。<br><br>
         戒台會用最純粹的鉑金打造，在內圈，我會刻上我們兩個人的名字。伊恩·卡特……與慕殊。`,
@@ -544,12 +879,31 @@
         `<strong>𝐷𝑜𝑟𝑚𝑖, 𝑚𝑒𝑎 𝑠𝑝𝑖𝑛𝑎 𝑎𝑙𝑏𝑎.</strong><br>
         <strong>（睡吧，我的白刺玫瑰。）</strong>`,
 
-        `<div class="ending-title">白刺玫瑰之戒</div>
+        `
+        <div class="ending-card">
 
-        <img src="https://www.oxxostudio.tw/img/articles/201405/about-me.jpg"  alt="這是圖片" title="oxxo">`
+          <div class="ending-title">
+            白刺玫瑰之戒
+          </div>
+
+          <img
+            src="https://www.oxxostudio.tw/img/articles/201405/about-me.jpg"
+            alt="白刺玫瑰之戒"
+            title="白刺玫瑰之戒"
+            class="story-image"
+          >
+
+        </div>
+        `
       ]
     }
+
   ];
+
+
+  /* ================================
+     DOM
+     ================================ */
 
   const indexEl = document.getElementById('index');
   const listEl = document.getElementById('storyList');
@@ -559,105 +913,295 @@
   const readerKicker = document.getElementById('readerKicker');
   const readerTitle = document.getElementById('readerTitle');
   const readerEpigraph = document.getElementById('readerEpigraph');
+
   let currentStory = null;
   let currentPage = 0;
 
+
+  /* ================================
+     目錄
+     ================================ */
+
   function renderIndex(){
+
     listEl.innerHTML = stories.map(s => `
       <li class="story-item">
-        <button class="story-btn" data-id="${s.id}">
-          <span class="numeral">${s.numeral}</span>
-          <span class="story-meta">
-            <span class="story-title">${s.title}</span>
-            <span class="story-teaser">${s.teaser}</span>
+
+        <button
+          class="story-btn"
+          data-id="${s.id}"
+        >
+
+          <span class="numeral">
+            ${s.numeral}
           </span>
-          <span class="story-arrow">閱讀故事 →</span>
+
+          <span class="story-meta">
+
+            <span class="story-title">
+              ${s.title}
+            </span>
+
+            <span class="story-teaser">
+              ${s.teaser}
+            </span>
+
+          </span>
+
+          <span class="story-arrow">
+            閱讀故事 →
+          </span>
+
         </button>
+
       </li>
     `).join('');
 
-    listEl.querySelectorAll('.story-btn').forEach(btn=>{
-      btn.addEventListener('click', ()=> openStory(btn.dataset.id));
-    });
+
+    listEl
+      .querySelectorAll('.story-btn')
+      .forEach(btn => {
+
+        btn.addEventListener(
+          'click',
+          () => openStory(btn.dataset.id)
+        );
+
+      });
+
   }
 
+
+  /* ================================
+     開啟故事
+     ================================ */
+
   function openStory(id){
-    const story = stories.find(s=>s.id===id);
+
+    const story = stories.find(
+      s => s.id === id
+    );
+
     if(!story) return;
 
     currentStory = story;
     currentPage = 0;
 
     indexEl.hidden = true;
-    document.getElementById('hero').style.display = 'none';
-    document.querySelector('footer.colophon').style.display = 'none';
+
+    document
+      .getElementById('hero')
+      .style.display = 'none';
+
+    document
+      .querySelector('footer.colophon')
+      .style.display = 'none';
+
     readerEl.hidden = false;
 
-    readerKicker.textContent = '卷' + story.numeral + ' · ' + story.title;
-    readerTitle.textContent = story.title;
-    readerEpigraph.textContent = '' + story.epigraph + '';
+    readerKicker.textContent =
+      '卷' + story.numeral + ' · ' + story.title;
+
+    readerTitle.textContent =
+      story.title;
+
+    readerEpigraph.textContent =
+      story.epigraph;
 
     renderPage();
-    window.scrollTo({top:0, behavior:'auto'});
+
+    window.scrollTo({
+      top:0,
+      behavior:'auto'
+    });
+
   }
 
+
+  /* ================================
+     顯示頁面
+     ================================ */
+
   function renderPage(){
+
     const story = currentStory;
+
     if(!story) return;
 
-    const page = story.pages[currentPage];
-    const lastPage = currentPage === story.pages.length - 1;
+    const page =
+      story.pages[currentPage];
+
+    const lastPage =
+      currentPage === story.pages.length - 1;
+
 
     nodeArea.innerHTML = `
+
       <div class="node-wrap">
-        <div class="node-text">${page}</div>
+
+        <div class="node-text">
+          ${page}
+        </div>
 
         <div class="page-nav">
-          <button class="page-btn" id="prevPage" ${currentPage === 0 ? 'disabled' : ''}>← 上一頁</button>
-          <span class="page-counter">${currentPage + 1} / ${story.pages.length}</span>
+
+          <button
+            class="page-btn"
+            id="prevPage"
+            ${currentPage === 0 ? 'disabled' : ''}
+          >
+            ← 上一頁
+          </button>
+
+          <span class="page-counter">
+            ${currentPage + 1} / ${story.pages.length}
+          </span>
+
           ${
             lastPage
-              ? '<button class="page-btn" id="finishStory">返回目錄</button>'
-              : '<button class="page-btn" id="nextPage">下一頁 →</button>'
+              ? `
+                <button
+                  class="page-btn"
+                  id="finishStory"
+                >
+                  返回目錄
+                </button>
+              `
+              : `
+                <button
+                  class="page-btn"
+                  id="nextPage"
+                >
+                  下一頁 →
+                </button>
+              `
           }
+
         </div>
+
       </div>
     `;
 
-    const prev = document.getElementById('prevPage');
-    const next = document.getElementById('nextPage');
-    const finish = document.getElementById('finishStory');
 
-    if(prev) prev.addEventListener('click', ()=>{
-      if(currentPage > 0){
-        currentPage--;
-        renderPage();
-        window.scrollTo({top:0, behavior:'auto'});
-      }
-    });
+    const prev =
+      document.getElementById('prevPage');
 
-    if(next) next.addEventListener('click', ()=>{
-      if(currentPage < story.pages.length - 1){
-        currentPage++;
-        renderPage();
-        window.scrollTo({top:0, behavior:'auto'});
-      }
-    });
+    const next =
+      document.getElementById('nextPage');
 
-    if(finish) finish.addEventListener('click', closeStory);
+    const finish =
+      document.getElementById('finishStory');
+
+
+    /* 上一頁 */
+
+    if(prev){
+
+      prev.addEventListener(
+        'click',
+        () => {
+
+          if(currentPage > 0){
+
+            currentPage--;
+
+            renderPage();
+
+            window.scrollTo({
+              top:0,
+              behavior:'auto'
+            });
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* 下一頁 */
+
+    if(next){
+
+      next.addEventListener(
+        'click',
+        () => {
+
+          if(
+            currentPage <
+            story.pages.length - 1
+          ){
+
+            currentPage++;
+
+            renderPage();
+
+            window.scrollTo({
+              top:0,
+              behavior:'auto'
+            });
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* 返回目錄 */
+
+    if(finish){
+
+      finish.addEventListener(
+        'click',
+        closeStory
+      );
+
+    }
+
   }
+
+
+  /* ================================
+     關閉故事
+     ================================ */
 
   function closeStory(){
+
     readerEl.hidden = true;
+
     indexEl.hidden = false;
-    document.getElementById('hero').style.display = '';
-    document.querySelector('footer.colophon').style.display = '';
+
+    document
+      .getElementById('hero')
+      .style.display = '';
+
+    document
+      .querySelector('footer.colophon')
+      .style.display = '';
+
     currentStory = null;
     currentPage = 0;
-    window.scrollTo({top:0, behavior:'auto'});
+
+    window.scrollTo({
+      top:0,
+      behavior:'auto'
+    });
+
   }
 
-  backBtn.addEventListener('click', closeStory);
+
+  backBtn.addEventListener(
+    'click',
+    closeStory
+  );
+
+
+  /* ================================
+     初始化
+     ================================ */
 
   renderIndex();
 

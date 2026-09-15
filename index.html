@@ -323,21 +323,6 @@
     border-color:var(--brass);
   }
 
-  .ending-card {
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
-
-  .ending-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-  }
-
-  .ending-card img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-  }
-
   @media (max-width:560px){
     .story-btn{ grid-template-columns:44px 1fr; }
     .story-arrow{ display:none; }
@@ -559,14 +544,10 @@
         `<strong>𝐷𝑜𝑟𝑚𝑖, 𝑚𝑒𝑎 𝑠𝑝𝑖𝑛𝑎 𝑎𝑙𝑏𝑎.</strong><br>
         <strong>（睡吧，我的白刺玫瑰。）</strong>`,
 
-        <div class="ending-card">
-            <div class="ending-title">白刺玫瑰之戒</div>
-        
-            <img src="https://www.oxxostudio.tw/img/articles/201405/about-me.jpg"
-                 alt="這是圖片"
-                 title="oxxo">
-        </div>
-        ]
+        `<div class="ending-title">白刺玫瑰之戒</div>
+
+        <img src="https://www.oxxostudio.tw/img/articles/201405/about-me.jpg"  alt="這是圖片" title="oxxo">`
+      ]
     }
   ];
 
